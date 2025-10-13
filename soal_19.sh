@@ -1,6 +1,6 @@
 #masuk ke tirion dan perbarui file
 $TTL    604800
-@       IN      SOA     ns1.K01.com. root.K01.com. (
+@       IN      SOA     ns1.K15.com. root.K15.com. (
                         2025101307      ; Serial (pastikan ini yang terbaru)
                         604800          ; Refresh
                         86400           ; Retry
@@ -8,8 +8,8 @@ $TTL    604800
                         604800 )        ; Negative Cache TTL
 ;
 ; Name Servers (Soal 4)
-@       IN      NS      ns1.K01.com.
-@       IN      NS      ns2.K01.com.
+@       IN      NS      ns1.K15.com.
+@       IN      NS      ns2.K15.com.
 ;
 ; A Records for Name Servers and Apex (Soal 4)
 ns1     IN      A       10.71.3.3       ; IP Tirion
@@ -34,22 +34,22 @@ vingilot    IN      A       10.71.3.6
 ;------------------------------------
 ; CNAME RECORDS (SOAL 7 & 19)
 ;------------------------------------
-www         IN      CNAME   sirion.K01.com.
-static      IN      CNAME   lindon.K01.com.
-app         IN      CNAME   vingilot.K01.com.
-havens      IN      CNAME   www.K01.com.
+www         IN      CNAME   sirion.K15.com.
+static      IN      CNAME   lindon.K15.com.
+app         IN      CNAME   vingilot.K15.com.
+havens      IN      CNAME   www.K15.com.
 
 ;------------------------------------
 ; RECORDS UNTUK MELKOR (SOAL 18)
 ;------------------------------------
 melkor      IN      TXT     "Morgoth (Melkor)"
-morgoth     IN      CNAME   melkor.K01.com.
+morgoth     IN      CNAME   melkor.K15.com.
 
 #restart layanan bind9
 service named restart
 
 #verifikasi pd earendil dan tes dns
-dig havens.K01.com
+dig havens.K15.com
 
 #jangan lupa utk kunci file kembali pd sirion
 chattr -i /etc/resolv.conf
@@ -62,4 +62,4 @@ service nginx start
 service nginx status
 
 #masuk ke earendil dan verifikasi akhir dgn lynx
-lynx http://havens.K01.com/static/
+lynx http://havens.K15.com/static/

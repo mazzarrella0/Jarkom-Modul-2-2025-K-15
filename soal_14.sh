@@ -16,9 +16,9 @@
 #tambahkan baris access_log ke server {..}
 server {
     listen 80;
-    root /var/www/app.K01.com;
+    root /var/www/app.K15.com;
     index index.php;
-    server_name app.K01.com;
+    server_name app.K15.com;
 
     # ==========================================================
     # TAMBAHKAN BARIS INI UNTUK MENGGUNAKAN FORMAT LOG BARU
@@ -32,7 +32,7 @@ server {
 nginx -t && service nginx restart
 
 #verifikasi di earendil (akses situs app dr sirion utk log di vingilot)
-lynx http://www.K01.com/app/
+lynx http://www.K15.com/app/
 
 #periksa "logbook" di vingilot
 tail -n 1 /var/log/nginx/access.log

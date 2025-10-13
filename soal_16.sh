@@ -1,20 +1,20 @@
 #masuk ke tirion dan buka file
-nano /etc/bind/K01/K01.com.db
+nano /etc/bind/K15/K15.com.db
 
 #ubah isi nano
 ...
-@       IN      SOA     ns1.K01.com. root.K01.com. (
+@       IN      SOA     ns1.K15.com. root.K15.com. (
                     2025101304      ; Serial NAIKKAN LAGI!
 ...
 lindon      30      IN      A       10.71.3.50  ; <-- UBAH IP & TAMBAHKAN TTL
 ...
-static      30      IN      CNAME   lindon.K01.com. ; <-- TAMBAHKAN TTL
+static      30      IN      CNAME   lindon.K15.com. ; <-- TAMBAHKAN TTL
 ...
 
 berubah menjadi >>>>>>>
 
 $TTL    604800
-@       IN      SOA     ns1.K01.com. root.K01.com. (
+@       IN      SOA     ns1.K15.com. root.K15.com. (
                         2025101302      ; Serial
                         604800          ; Refresh
                         86400           ; Retry
@@ -22,8 +22,8 @@ $TTL    604800
                         604800 )        ; Negative Cache TTL
 ;
 ; Name Servers
-@       IN      NS      ns1.K01.com.
-@       IN      NS      ns2.K01.com.
+@       IN      NS      ns1.K15.com.
+@       IN      NS      ns2.K15.com.
 ;
 ; A Records for Name Servers and Apex
 ns1     IN      A       10.71.3.3
@@ -44,12 +44,12 @@ lindon      30      IN      A       10.71.3.50
 vingilot    IN      A       10.71.3.6
 ;
 ; CNAME RECORDS (SOAL 7)
-www         IN      CNAME   sirion.K01.com.
-static      30      IN      CNAME   lindon.K01.com.
-app         IN      CNAME   vingilot.K01.com.
+www         IN      CNAME   sirion.K15.com.
+static      30      IN      CNAME   lindon.K15.com.
+app         IN      CNAME   vingilot.K15.com.
 
 #restart BIND9
 service named restart
 
 #masuk ke earendil dan verifikasi
-dig static.K01.com
+dig static.K15.com
