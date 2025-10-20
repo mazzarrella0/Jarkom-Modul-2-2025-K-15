@@ -33,6 +33,30 @@
 
 >> Ganti `<KXX.com>` dengan *hostname* domain yang sebenarnya `K15.com`
 
+### 13\. Pengalihan Wajib $ \text{Hostname}$ ($ \text{Sirion}$)
+
+**Tujuan:** Memastikan semua akses ke **Sirion** yang menggunakan IP Address atau *hostname* non-kanonik (`sirion.<KXX.com>`) dialihkan secara permanen (*redirect* 301) ke *hostname* kanonik `www.<KXX.com>`.
+
+**Hasil Pengerjaan:**
+
+  * **Aksi:** Menambahkan blok `server` baru di Nginx **Sirion** yang diatur sebagai `default_server`. Blok ini secara eksplisit menangani semua permintaan yang tidak cocok dengan *hostname* utama (`www.<KXX.com>`) dan menjalankan pengalihan 301.
+  * **Perubahan Konfigurasi Nginx (Sirion):**
+    ```nginx
+    # /etc/nginx/sites-available/sirion.conf
+    server {
+        # 'default_server' menangani permintaan yang tidak cocok (termasuk akses via IP)
+        listen 80 default_server;
+        
+        # Juga secara eksplisit menangani nama 'sirion'
+        server_name sirion.<KXX.com>;
+
+        # Pengalihan permanen (301) ke nama kanonik www.<KXX.com>
+        # Variabel $request_uri memastikan path asli dipertahankan (misal /static/)
+        return 301 http://www.<KXX.com>$request_uri;
+    }
+    ```
+  * **Verifikasi:** Mengakses Sirion menggunakan IP Address atau `sirion.<KXX.com>` akan menghasilkan kode respons **301 Moved Permanently** yang secara otomatis mengarahkan ke `www.<KXX.com>`.
+
 ### 14\. Pencatatan IP Klien Asli ($ \text{Vingilot}$)
 
 **Tujuan:** Memastikan *access log* di **Vingilot** (web dinamis) mencatat IP klien asli, bukan IP *Reverse Proxy* **Sirion**.
