@@ -82,6 +82,6 @@ server {
 nginx -t && service nginx restart
 
 #coba akses page
-lynx http://www.K01.com/
+lynx http://www.K15.com/
 
 ~selesaiii🥳🥳🎉
